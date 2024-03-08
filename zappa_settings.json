@@ -1,0 +1,21 @@
+{
+    "dev": {
+        "app_function": "funcion_lambda.lambda_handler",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "parcial1corte-b",
+        "runtime": "python3.9",
+        "s3_bucket": "buckets-raw"
+        "apigateway_enabled": false,
+        "manage_roles": false,
+        "role_name": "robomaker_students",
+        "keep_warm": false,
+        "role_name": "LabRole",
+        "events": [
+            {
+                "function": "funcion_lambda.lambda_handler",
+                "expression": "cron(35 2 ? * FRI *)" 
+            }
+        ]
+    }
+}
