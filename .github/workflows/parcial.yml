@@ -65,7 +65,10 @@ jobs:
         run: |
           python -m venv env
           source env/bin/activate
+          pip install urllib3==1.26.7
           pip install zappa
+          pip freeze > requirements.txt
+          
           pwd
           zappa update dev1
           zappa update dev1
