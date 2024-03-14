@@ -12,7 +12,7 @@
         "events": [
             {
                 "function": "funcion_lambda.lambda_handler",
-                "expression": "cron(0 12 * * ? *)"
+                "expression": "cron(5 22 ? * 4 *)"
             }
         ]
     },
@@ -22,7 +22,6 @@
         "keep_warm": false,
         "role_name": "LabRole"
         "aws_region": "us-east-1",
-        "profile_name": "default",
         "manage_roles": false,
         "project_name": "parcial1corte-b",
         "runtime": "python3.9",
@@ -31,7 +30,7 @@
         "events": [
             {
                 "function": "funcion2_lambda.lambda_handler",
-                "expression": "cron(5 12 * * ? *)"
+                "expression": "cron(5 22 ? * 4 *)"
             }
         ]
     }
