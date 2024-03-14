@@ -31,7 +31,7 @@
             {
                 "function": "funcion2_lambda.lambda_handler",
                 "event_source": {
-                    "arn":  "arn:aws:s3:::bucket-raw-cv"
+                    "arn":  "arn:aws:s3:::buckets-raw"
                     "events": [
                         "s3:ObjectCreated:*"
                     ]
