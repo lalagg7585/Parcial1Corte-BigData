@@ -40,14 +40,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
             python-version: '3.9.16'
-      - name: Install dependencies
-        run: |
-              python -m pip install --upgrade pip
-              pip install -r requirements.txt
-      #- name: Test
-      #  run: pytest
-      #- name: Flake
-        #run : flake8 --exclude env
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -55,20 +47,30 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN}}
           aws-region: us-east-1
-      - name: List buckets
-        run: aws s3 ls
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt 
+          
       - name: Debug AWS Credentials
         run: |
           echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
           echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
           echo "AWS_SESSION_TOKEN: $AWS_SESSION_TOKEN"
+          
+      #- name: List buckets
+      #  run: aws s3 ls
+      - name: Install dependencies
+        run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+
       - name: Deploy with Zappa
         run: |
           python -m venv env
           source env/bin/activate
           pip install zappa
           zappa update dev1
+          zappa update dev1
+          zappa invoke dev1 funcion_lambda
+
+      - name: Test
+        run: pytest
+      - name: Flake
+        run : flake8 --exclude env
