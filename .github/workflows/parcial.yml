@@ -71,8 +71,8 @@ jobs:
           
           pwd
           zappa update dev1
-          zappa update dev1
-          zappa invoke dev1 funcion_lambda
+          zappa update dev2
+          zappa invoke dev1 funcion_lambda.lambda_handler
 
       - name: Test
         run: pytest
