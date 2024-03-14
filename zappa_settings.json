@@ -2,7 +2,7 @@
     "dev1": {
         "app_function": "funcion_lambda.lambda_handler",
         "keep_warm": false,
-        "role_name": "LabRole"
+        "role_name": "LabRole",
         "aws_region": "us-east-1",
         "manage_roles": false,
         "project_name": "parcial1corte-b",
@@ -20,7 +20,7 @@
     "dev2": {
         "app_function": "funcion2_lambda.lambda_handler",
         "keep_warm": false,
-        "role_name": "LabRole"
+        "role_name": "LabRole",
         "aws_region": "us-east-1",
         "manage_roles": false,
         "project_name": "parcial1corte-b",
@@ -31,12 +31,12 @@
             {
                 "function": "funcion2_lambda.lambda_handler",
                 "event_source": {
-                    "arn":  "arn:aws:s3:::buckets-raw"
+                    "arn":  "arn:aws:s3:::buckets-raw",
                     "events": [
                         "s3:ObjectCreated:*"
                     ]
                 }
-            }
-        ]
+            }
+        ]
     }
 }
