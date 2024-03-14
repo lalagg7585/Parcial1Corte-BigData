@@ -30,8 +30,13 @@
         "events": [
             {
                 "function": "funcion2_lambda.lambda_handler",
-                "expression": "cron(37 22 ? * 4 *)"
-            }
-        ]
+                "event_source": {
+                    "arn":  "arn:aws:s3:::bucket-raw-cv"
+                    "events": [
+                        "s3:ObjectCreated:*"
+                    ]
+                }
+            }
+        ]
     }
 }
