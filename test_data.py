@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
-from funcion2_lambda import lambda_handler  # Import your function here
+from funcion2_lambda import lambda_handler, extract_data   # Import your function here
 
 
 class TestLambdaHandlerProcessing(unittest.TestCase):
@@ -24,6 +24,32 @@ class TestLambdaHandlerProcessing(unittest.TestCase):
         # Verify calls and behavior
         self.assertEqual(result['statusCode'], 200)
         # Add more assertions as necessary
+
+    def test_extract_data(self):
+        # HTML Content with known data
+        html_content = """
+        <div class="listing-card__information">
+            <div class="price">$100,000</div>
+            <div class="card-icon card-icon__area"><span>200 m²</span></div>
+            <span data-test="bedrooms">3 Bedrooms</span>
+            <span class="facility-item__text">Garden</span>
+        </div>
+        """
+        expected_data = [['$100,000', '200 m²', '3 Bedrooms', 'Garden']]
+        extracted_data = extract_data(html_content)
+        self.assertEqual(extracted_data, expected_data)
+
+        # Test with missing data
+        html_content_missing = """
+        <div class="listing-card__information">
+            <div class="price">$100,000</div>
+            <div class="card-icon card-icon__area"><span>200 m²</span></div>
+            <span class="facility-item__text">Garden</span>
+        </div>
+        """
+        expected_data_missing = [['$100,000', '200 m²', 'No disponible', 'Garden']]
+        extracted_data_missing = extract_data(html_content_missing)
+        self.assertEqual(extracted_data_missing, expected_data_missing)
 
 
 if __name__ == '__main__':
