@@ -47,7 +47,8 @@ class TestLambdaHandlerProcessing(unittest.TestCase):
             <span class="facility-item__text">Garden</span>
         </div>
         """
-        expected_data_missing = [['$100,000', '200 m²', 'No disponible', 'Garden']]
+        expected_data_missing = [['$100,000', '200 m²', 'No disponible'
+        , 'Garden']]
         extracted_data_missing = extract_data(html_content_missing)
         self.assertEqual(extracted_data_missing, expected_data_missing)
 
